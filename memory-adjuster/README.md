@@ -9,12 +9,15 @@ This script sets the JVM memory allocation for the following Zoomdata 2.3 compon
 - Demo Datasource (Real Time Sales)
 
 ##Parameters
-The script accepts the following parameters
-1. Memory (required) - Total amount of host memory (in KB) that should be allocated to Zoomdata
-2. Non-product memory reservation (optional) - The percentage of host memory that will be reserved for system (non-Zoomdata) processes. By default this is set to `15`.
+The script accepts the following parameters:
+
+| Argument |  Name  |  Required  |  Description  |
+| --- | --- | --- | --- |
+| 1 | Memory | Yes | Total amount of host memory (in KB) that should be allocated to Zoomdata |
+| 2 | Non-product reservation | No | The percentage of host memory that will be reserved for system (non-Zoomdata) processes. By default this is set to `15`. |
 
 Using the parameters above, total memory available to Zoomdata is computed by: 
-`"Memory" * (100 - "Non-product memory reservation") / 100)`
+`"Memory" * (100 - "Non-product reservation") / 100)`
 
 ##Usage
 ###Deployment on dedicated resources
@@ -24,7 +27,7 @@ Use the following example when allocating all of the host memory to Zoomdata. Th
 ```
 
 ###Deployment on shared resources
-Use the following example when allocating a specific amount of memory to Zoomdata. This example allocates 20 GB and reserves none of it for non-Zoomdata processes.
+Use the following example when allocating a specific amount of memory to Zoomdata. This example allocates 20 GB and makes no reservation for non-Zoomdata processes.
 ```
 ./memory-adjuster.py 20971520 0
 ```
