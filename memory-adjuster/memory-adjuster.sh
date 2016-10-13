@@ -5,5 +5,5 @@ if [ ! -d "/etc/zoomdata" ]; then
     chown zoomdata:zoomdata /etc/zoomdata
 fi
 
-/usr/bin/python ./memory-adjuster.py `/usr/bin/cat /proc/meminfo |/bin/grep "MemTotal" | /usr/bin/awk '{print $2}'`
+/usr/bin/env python ./memory-adjuster.py `cat /proc/meminfo | grep "MemTotal" | awk '{print $2}'`
 
