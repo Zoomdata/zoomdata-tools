@@ -24,6 +24,6 @@ When executed, the `create_impala_data_source.py` script will prompt for the fol
 * Impala collection (table) name OR custom SQL statement
 * Name for the new datasource in Zoomdata
 
-_**Note:** Connection IDs can be obtained from the Zoomdata UI at https://server:port/zoomdata/admin.html#connections. Select the desired connection and observe the ID appended to the URL: (https://server:port/zoomdata/admin.html#connections/**connectionID**)_
+_**Note:** Connection IDs can be obtained from the Zoomdata UI by clicking on **Manage Connections** from the **Sources** page. Select the desired connection and observe the ID appended to the URL: (https://server:port/zoomdata/admin.html#connections/**connectionID**)_
 
 Additionally, the script prompts for debug mode which will print verbose output to the console. This output contains all of the API HTTP request/response data (including message payloads).
