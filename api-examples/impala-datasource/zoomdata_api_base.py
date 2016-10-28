@@ -17,6 +17,11 @@ class HttpServerRequest(object):
       handler = urllib2.HTTPSHandler(debuglevel=self.debugLevel)
       opener = urllib2.build_opener(handler)
       urllib2.install_opener(opener)
+      print "- API ENDPOINT: "+req.get_full_url()
+      print "- REQUEST METHOD: "+req.get_method()
+      print "- AUTHORIZATION HEADER: "+req.get_header("Authorization")
+      print "\n----- REQUEST DATA -----"
+      print req.get_data()
     
     res = urllib2.urlopen(req)
     out = res.read()
