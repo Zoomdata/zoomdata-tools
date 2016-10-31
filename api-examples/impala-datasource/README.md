@@ -15,9 +15,10 @@ _**Note:** Connection IDs can be obtained from the Zoomdata UI by clicking on **
 ### Summary
 The private API follows a series of steps to create a data source; information retrieved from one step is used in subsequent steps to configure the source.  For a given collection (table), datasources are created in four synchronous REST API calls that
 
-1. Initialize the collection's metadata for its fields. GET `https://<server>:<port>/<path>/service/source/fields`
-1. Construct the fields' metadata properties. GET `https://<server>:<port>/<path>/service/source/fields/construct`
-1. Initialize the Zoomdata datasource definition, incorporating the fields' metadata. GET `https://<server>:<port>/<path>/service/source`
+1. Initialize the collection's metadata for its fields.  POST `https://<server>:<port>/<path>/service/source/fields` 
+  _Note: this request payload contains the collection's schema name, collection name, and Zoomdata connection ID_
+1. Construct the fields' metadata properties. POST `https://<server>:<port>/<path>/service/source/fields/construct`
+1. Initialize the Zoomdata datasource definition, incorporating the fields' metadata. POST `https://<server>:<port>/<path>/service/source`
 1. Finalize the datasource definition with visualization defaults PATCH `https://<server>:<port>/<path>/service/source/
 Optionally, the defaults for the visualizations can be overridden by customizing the visualization collection and re-invoking the POST statement to create the data source.  Obtain the visualization and other source settings by calling `https://<server>:<port>/<path>/service/sources/<sourceId>`
 
