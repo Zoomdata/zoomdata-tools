@@ -136,3 +136,8 @@ class ZoomdataObject(object):
   def create(self):
     # Create the object in Zoomdata and record the assigned ID
     self.id = self.submit()["id"]
+
+  def delete(self):
+      # Delete the given object in Zoomdata
+      url = self.apiEndpoint+'/'+self.id
+      return self.serverRequest.submit(url,lmda='DELETE')

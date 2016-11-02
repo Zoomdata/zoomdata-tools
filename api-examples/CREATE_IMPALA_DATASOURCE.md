@@ -2,7 +2,8 @@
 
 Sample Python utility for use with Zoomdata's 'Private' REST API.  Zoomdata uses the 'private API' as the REST endpoints for all AJAX calls between the Zoomdata web application and the Zoomdata server.  This API is not documented for public use, but can be used in cases where the public API does not offer the needed options, such as creating a new data source with custom SQL.  In this document and the associated sample script we examine how to create a data source in Zoomdata that has more complex settings than allowed by the public API.  The public API does provide a method to create a data source; see the [documentation](https://developer.zoomdata.com/2.2/docs/rest-api/#!/sources/createUsingPOST_5) for details on the public API.
 
-## Prerequisites:
+## Data Source creation in Zoomdata using the REST API
+### Prerequisites:
 * Developers creating a data source using the private API should be familiar with the administrative user interface in Zoomdata to create data sources.  Since the private API is used by the Web application each step corresponds to an API call.
 * API calls require basic authentication.  Developers will need a username and password for a Zoomdata account with administrative privileges.
 * The Zoomdata server should already be configured with the connector for the data source, such as the EDC connector for Impala.  The API calls require the connection ID.
@@ -11,7 +12,6 @@ _**Note:** Connection IDs can be obtained from the Zoomdata UI by clicking on **
 
 *  The connection details (JDBC connection string, user name, etc.) should already be defined in Zoomdata.  To define connection details, log in as an account with administrative rights.  Go to the 'Sources' page and click 'Manage Connections'.  If the data connection is not listed then create, including the JDBC URL, user, password, and any other information required by the connection.
 
-## Data Source Creation in Zoomdata using the REST API
 ### Summary
 The private API follows a series of steps to create a data source; information retrieved from one step is used in subsequent steps to configure the source.  For a given collection (table), datasources are created in four synchronous REST API calls that
 

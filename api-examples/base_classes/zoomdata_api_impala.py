@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-from zoomdata_api_base import ZoomdataRequest,ZoomdataObject
+from base_classes.zoomdata_api_base import ZoomdataRequest,ZoomdataObject
 import sys,json
 
-template_directory = 'object_templates'
+template_directory = 'base_classes/object_templates'
 
 class ImpalaConnection(ZoomdataObject):
     # Create a new connection to an instance of Impala
-    def __init__(self, name, request, jdbc_url, connectionUser, connectionPassword, connectionTypeId=None):
+    def __init__(self, name, request, jdbc_url, connectionUser, connectionPassword, connectionTypeId=""):
         #Initialize the new connection
         self.name = name
         self.serverRequest = request
@@ -21,8 +21,9 @@ class ImpalaConnection(ZoomdataObject):
         self.payload["parameters"]["USER_NAME"] = connectionUser 
         self.payload["parameters"]["PASSWORD"] = connectionPassword
         # Connection types are only associated with EDC2 connector servers
-        if connectionTypeId is None:
+        if connectionTypeId == "":
             # Assume we are creating a connection with the "CORE" (legacy) connector in Zoomdata
+            self.payload["connectionTypeId"] = "IMPALA_IMPALA"
             self.payload["type"] = "IMPALA"
         else:
             # Assume we are creating a connection with the an EDC2 connector server
@@ -46,7 +47,7 @@ class ImpalaConnection(ZoomdataObject):
 
 class ImpalaDatasource(ZoomdataObject):
     # Create a new datasource for a collection(table) in Impala
-    def __init__(self, name, request, connectionID, collection, schema, customSQLFlag="false"):
+    def __init__(self, name, request, connectionID, collection, schema, customSQLFlag="false", connectorType="IMPALA"):
         # Initialize the data source object
         self.name = name
         self.serverRequest = request
@@ -64,7 +65,7 @@ class ImpalaDatasource(ZoomdataObject):
         self.initPayload(template_directory+"/datasource/impala.json")
         # Populate the request payload
         self.payload["name"] = name
-        self.payload["type"] = "IMPALA"
+        self.payload["type"] = connectorType # Should be set to "IMPALA" for legacy connections; "EDC2" for EDC 
         self.payload["subStorageType"] = "IMPALA" # Not necessary for core connectors, but doesn't hurt
         self.payload["storageConfiguration"]["collection"] = collection
         self.payload["storageConfiguration"]["schema"] = schema 
@@ -130,8 +131,3 @@ class ImpalaDatasource(ZoomdataObject):
         # Pass datasource definition back to Zoomdata. Visualization defaults will be set
         url = self.apiEndpoint+'/'+self.id
         return self.serverRequest.submit(url,data=json.dumps(data),lmda='PATCH')
-
-    def delete(self):
-        # Delete the given datasource in Zoomdata
-        url = self.apiEndpoint+'/'+self.id
-        return self.serverRequest.submit(url,lmda='DELETE')
