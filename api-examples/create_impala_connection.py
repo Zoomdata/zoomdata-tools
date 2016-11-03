@@ -25,9 +25,9 @@ zoomdataServerRequest = ZoomdataRequest(zoomdataBaseURL, adminUser, adminPasswor
 # Enable verbose output if desired
 if debug.lower() == "yes":
   zoomdataServerRequest.enableDebug()
-# Initialize the source object
+# Initialize the connection object
 connection = ImpalaConnection(connectionName, zoomdataServerRequest, jdbc_url, connectionUser, connectionPassword, connectionTypeID)
-# Finally, create the source in Zoomdata
+# Finally, create the connection in Zoomdata
 connection.create()
 # Return the Zoomdata connection id of the newly created connection
 print "connection: "+connection.id
