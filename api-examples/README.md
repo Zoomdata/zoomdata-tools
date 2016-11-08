@@ -7,5 +7,7 @@ Sample Python utilities for use with Zoomdata's 'Private' REST API.  Zoomdata us
 * API calls require basic authentication.  Developers will need a username and password for a Zoomdata account with administrative privileges.
 
 ## API Samples Currently Available:
-* [Connection Creation](CREATE_IMPALA_CONNECTION.md)
-* [Data Source Creation](CREATE_IMPALA_DATASOURCE.md)
+* [Impala Connection Creation](impala/CREATE_IMPALA_CONNECTION.md)
+* [Impala Data Source Creation](impala/CREATE_IMPALA_DATASOURCE.md)
+* [MySQL Connection Creation](mysql/CREATE_MYSQL_CONNECTION.md)
+* [MySQL Data Source Creation](mysql/CREATE_MYSQL_DATASOURCE.md)

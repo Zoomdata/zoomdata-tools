@@ -1,0 +1,11 @@
+{
+  "connectionTypeId": "",
+  "name": "",
+  "parameters": {
+    "JDBC_URL": "",
+    "PASSWORD": "",
+    "USER_NAME": ""
+  },
+  "subStorageType": "",
+  "type": ""
+}

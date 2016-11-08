@@ -1,0 +1,13 @@
+{
+  "objectFields": [],
+  "storageConfiguration": {
+    "collection": "",
+    "collectionParams": {},
+    "connectionId": "",
+    "parameters": {},
+    "partitions": {},
+    "schema": "default"
+  },
+  "subStorageType": "",
+  "type": ""
+}
