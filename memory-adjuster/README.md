@@ -1,12 +1,10 @@
 #Zoomdata Memory (JVM) Adjustment Script
 
 ##Purpose
-This script sets the JVM memory allocation for the following Zoomdata 2.3 component services
+This script sets the JVM memory allocation for the following Zoomdata 2.4 component services
 - Zoomdata (application server)
 - Job Scheduler
 - Spark Proxy (SparkIt cache)
-- Elasticsearch (1.7) connector
-- Demo Datasource (Real Time Sales)
 
 ##Parameters
 The script accepts the following parameters:
