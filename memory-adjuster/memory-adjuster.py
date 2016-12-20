@@ -107,6 +107,7 @@ def main():
         opts.edcs_count * DEFAULT_EDC_XMX
     ))
 
+
     for c in components:
         mem_fract = int(mem_avail * c['mem_xmx_fract'])
         c['xmx'] = mem_fract if mem_fract > c['mem_xmx_min'] else c['mem_xmx_min']
@@ -118,7 +119,7 @@ def main():
         print("Adjusting {0}, -Xms: {1}Mb, -Xmx: {2}Mb".format(c['name'], c['xms'], c['xmx']))
 
         # check if env config file is already exists and contains marker
-        env_file_name = "{0}/{1}".format(DEFAULT_CONF_DIR, c['conf_file_name'])
+        env_file_name = "{0}/{1}".format(opts.config_dir, c['conf_file_name'])
         try:
             if DEFAULT_MARKER.strip() in [line.strip() for line in open(env_file_name, "r").readlines()]:
                 print("Previous adjustments was found for {0} component".format(c['name']))
