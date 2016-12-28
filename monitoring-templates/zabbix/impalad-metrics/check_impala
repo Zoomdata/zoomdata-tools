@@ -1,0 +1,99 @@
+#!/usr/bin/env python2.7
+# -*- coding: utf-8 -*-
+
+from sys import exit, argv
+
+from impala import error
+from impala.dbapi import connect
+
+
+# IMPALA_QUERY = 'SHOW TABLES'
+IMPALA_QUERY = 'select city from auto_data limit 1'
+IMPALA_TABLE = 'auto_data'
+
+
+class ImpalaCheckAlive:
+    """ Impala check alive """
+    def __init__(self, host):
+        self.impalaHost = host
+        self.impalaPort = 21050
+        self.timeout = 5
+        self.conn = None
+        self.cursor = None
+        self.results = None
+        self.status_num = 1
+        self.status = "OK"
+        self.err_message = []
+        pass
+
+    def __connection(self):
+        """ Connect to IMPALA host """
+        try:
+            self.conn = connect(host=self.impalaHost, port=self.impalaPort, timeout=self.timeout)
+#    except error.Error as e:
+        except:
+            self.err_message.append("Connection: Problem")
+            return False
+
+        return True
+
+    def __get_cursor(self):
+        """ """
+        try:
+            self.cursor = self.conn.cursor()
+        except Error as e:
+            self.err_message.append("Cursor: " + e.message)
+            return False
+
+        return True
+
+    def __execute(self):
+        """ """
+        try:
+            self.cursor.execute(IMPALA_QUERY)
+        # except error.Error as e:
+        except Exception, e:
+            self.err_message.append("Execute: " + e.message)
+            return False
+
+        return True
+
+    def __get_result(self):
+        """ Get result """
+        try:
+            self.results = self.cursor.fetchall()
+        except error.Error as e:
+            self.err_message.append("Result: " + e.message)
+            return False
+
+        return True
+
+    def __check_result(self):
+        """ Check if query returns expected results """
+        if self.results:
+            # print self.results
+            return True
+
+        self.err_message.append("CheckResult: No result")
+
+    def run(self):
+        """ Run function """
+        if self.__connection():
+            self.__get_cursor()
+            self.__execute()
+            self.__get_result()
+
+            self.__check_result()
+
+        if len(self.err_message) > 0:
+            self.status_num = 0
+            self.status = "CRITICAL"
+
+if __name__ == "__main__":
+    # Check status of Impala on all hosts
+    check = ImpalaCheckAlive(argv[1])
+    check.run()
+    #print check.err_message
+    print check.status_num
+
+    exit()
