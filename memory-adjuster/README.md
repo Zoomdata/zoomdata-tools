@@ -1,3 +1,5 @@
+# Copyright (C) Zoomdata, Inc. 2012-2017. All rights reserved.
+
 #Zoomdata Memory (JVM) Adjustment Script
 
 ##Purpose
