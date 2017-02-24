@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2016-10-19T13:54:08Z</date>
+    <date>2017-02-24T08:08:53Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -19,13 +19,16 @@
             </groups>
             <applications>
                 <application>
+                    <name>Zoomdata Internal Spark</name>
+                </application>
+                <application>
                     <name>Zoomdata JVM Metrics</name>
                 </application>
                 <application>
                     <name>Zoomdata REST Metrics</name>
                 </application>
                 <application>
-                    <name>Zoomdata service</name>
+                    <name>Zoomdata Service</name>
                 </application>
             </applications>
             <items>
@@ -66,7 +69,7 @@
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>Zoomdata service</name>
+                            <name>Zoomdata Service</name>
                         </application>
                     </applications>
                     <valuemap>
@@ -111,7 +114,7 @@
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>Zoomdata service</name>
+                            <name>Zoomdata Service</name>
                         </application>
                     </applications>
                     <valuemap>
@@ -156,7 +159,7 @@
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>Zoomdata service</name>
+                            <name>Zoomdata Service</name>
                         </application>
                     </applications>
                     <valuemap>
@@ -201,12 +204,98 @@
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>Zoomdata service</name>
+                            <name>Zoomdata Service</name>
                         </application>
                     </applications>
                     <valuemap>
                         <name>Service state</name>
                     </valuemap>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Sessions Count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;counters:zoomdata.sessions.count:count&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Service</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Topologies Count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;counters:zoomdata.topologies.count:count&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Service</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
                     <logtimefmt/>
                 </item>
                 <item>
@@ -247,6 +336,221 @@
                     <applications>
                         <application>
                             <name>Zoomdata JVM Metrics</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Websockets Count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;counters:zoomdata.websockets.count:count&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Service</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Disk Used</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:*.driver.BlockManager.disk.diskSpaceUsed_MB:value&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units>Mb</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Internal Spark</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Max Memory</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:*.driver.BlockManager.memory.maxMem_MB:value&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units>Mb</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Internal Spark</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Used Memory</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:*.driver.BlockManager.memory.memUsed_MB:value&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units>Mb</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Internal Spark</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>All Jobs Count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:*.driver.DAGScheduler.job.allJobs:value&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Internal Spark</name>
                         </application>
                     </applications>
                     <valuemap/>
@@ -769,6 +1073,264 @@
                     <logtimefmt/>
                 </item>
                 <item>
+                    <name>Forever Cache Hit Ratio</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:rdd.forever.cache.hit.ratio:value&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Service</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Forever Cache Requests</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:rdd.forever.cache.requests:value&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Service</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Forever Cache Objects</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:rdd.forever.cache.size:value&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Service</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Timed Cache Hit Ratio</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:rdd.timed.cache.hit.ratio:value&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Service</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Timed Cache Requests</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:rdd.timed.cache.requests:value&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Service</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Timed Cache Objects</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:rdd.timed.cache.size:value&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Service</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
                     <name>REST HTTP/200</name>
                     <type>10</type>
                     <snmp_community/>
@@ -983,6 +1545,221 @@
                     <valuemap/>
                     <logtimefmt/>
                 </item>
+                <item>
+                    <name>Avg Message Process Time</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;timers:*.driver.DAGScheduler.messageProcessingTime:mean&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
+                    <units>Seconds</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Internal Spark</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Avg Messages Rate</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;timers:*.driver.DAGScheduler.messageProcessingTime:mean_rate&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
+                    <units>req/sec</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Internal Spark</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Avg Topology Initialization</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;timers:zoomdata.activity.topology.initialization:mean&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
+                    <units>Seconds</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Service</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Avg Topology Lifetime</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;timers:zoomdata.activity.topology.lifetime:mean&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
+                    <units>Seconds</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Service</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Avg Websocket Lifetime</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;timers:zoomdata.activity.websocket.lifetime:mean&quot;]</key>
+                    <delay>60</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
+                    <units>Seconds</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zoomdata Service</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
             </items>
             <discovery_rules/>
             <macros/>
@@ -991,6 +1768,26 @@
         </template>
     </templates>
     <triggers>
+        <trigger>
+            <expression>{Template App Zoomdata Service:zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:jvm.memory.heap.used:value&quot;].avg(1h)}&gt;{Template App Zoomdata Service:zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:jvm.memory.heap.max:value&quot;].last(0)} * 0.75</expression>
+            <name>Zoomdata Heap is 75% commited on {HOST.NAME}</name>
+            <url/>
+            <status>0</status>
+            <priority>2</priority>
+            <description>Triggers if Zoomdata Heap committed memory is more than 75% of available heap size.</description>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{Template App Zoomdata Service:zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:jvm.memory.heap.used:value&quot;].avg(1h)}&gt;{Template App Zoomdata Service:zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:jvm.memory.heap.max:value&quot;].last(0)} * 0.95</expression>
+            <name>Zoomdata Heap is 95% commited on {HOST.NAME}</name>
+            <url/>
+            <status>0</status>
+            <priority>4</priority>
+            <description>Triggers if Zoomdata Heap committed memory is more than 95% of available heap size.</description>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
         <trigger>
             <expression>{Template App Zoomdata Service:check_http[&quot;{HOST.CONN}&quot;,80,/zoomdata/service/version].max(#3)}=0</expression>
             <name>Zoomdata HTTP redirect is down on {HOST.NAME}</name>
@@ -1109,6 +1906,165 @@
             </graph_items>
         </graph>
         <graph>
+            <name>Zoomdata Internal Counters</name>
+            <width>900</width>
+            <height>200</height>
+            <yaxismin>0.0000</yaxismin>
+            <yaxismax>100.0000</yaxismax>
+            <show_work_period>1</show_work_period>
+            <show_triggers>1</show_triggers>
+            <type>0</type>
+            <show_legend>1</show_legend>
+            <show_3d>0</show_3d>
+            <percent_left>0.0000</percent_left>
+            <percent_right>0.0000</percent_right>
+            <ymin_type_1>1</ymin_type_1>
+            <ymax_type_1>0</ymax_type_1>
+            <ymin_item_1>0</ymin_item_1>
+            <ymax_item_1>0</ymax_item_1>
+            <graph_items>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>1A7C11</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template App Zoomdata Service</host>
+                        <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;counters:zoomdata.sessions.count:count&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>AAAA00</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template App Zoomdata Service</host>
+                        <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;counters:zoomdata.topologies.count:count&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>2774A4</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template App Zoomdata Service</host>
+                        <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;counters:zoomdata.websockets.count:count&quot;]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Zoomdata Internal Services Timers</name>
+            <width>900</width>
+            <height>200</height>
+            <yaxismin>0.0000</yaxismin>
+            <yaxismax>100.0000</yaxismax>
+            <show_work_period>1</show_work_period>
+            <show_triggers>1</show_triggers>
+            <type>0</type>
+            <show_legend>1</show_legend>
+            <show_3d>0</show_3d>
+            <percent_left>0.0000</percent_left>
+            <percent_right>0.0000</percent_right>
+            <ymin_type_1>1</ymin_type_1>
+            <ymax_type_1>0</ymax_type_1>
+            <ymin_item_1>0</ymin_item_1>
+            <ymax_item_1>0</ymax_item_1>
+            <graph_items>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>1A7C11</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template App Zoomdata Service</host>
+                        <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;timers:zoomdata.activity.topology.initialization:mean&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>0000CC</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template App Zoomdata Service</host>
+                        <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;timers:zoomdata.activity.topology.lifetime:mean&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>CCCC00</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template App Zoomdata Service</host>
+                        <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;timers:zoomdata.activity.websocket.lifetime:mean&quot;]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Zoomdata Internal Spark Memory Usage</name>
+            <width>900</width>
+            <height>200</height>
+            <yaxismin>0.0000</yaxismin>
+            <yaxismax>100.0000</yaxismax>
+            <show_work_period>1</show_work_period>
+            <show_triggers>1</show_triggers>
+            <type>0</type>
+            <show_legend>1</show_legend>
+            <show_3d>0</show_3d>
+            <percent_left>0.0000</percent_left>
+            <percent_right>0.0000</percent_right>
+            <ymin_type_1>1</ymin_type_1>
+            <ymax_type_1>2</ymax_type_1>
+            <ymin_item_1>0</ymin_item_1>
+            <ymax_item_1>
+                <host>Template App Zoomdata Service</host>
+                <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:*.driver.BlockManager.memory.maxMem_MB:value&quot;]</key>
+            </ymax_item_1>
+            <graph_items>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>EE0000</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template App Zoomdata Service</host>
+                        <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:*.driver.BlockManager.disk.diskSpaceUsed_MB:value&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>0000EE</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template App Zoomdata Service</host>
+                        <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:*.driver.BlockManager.memory.memUsed_MB:value&quot;]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
             <name>Zoomdata Memory Usage</name>
             <width>900</width>
             <height>400</height>
@@ -1183,6 +2139,50 @@
                     <item>
                         <host>Template App Zoomdata Service</host>
                         <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;counters:zoomdata.visualizations.count:count&quot;]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Zoomdata RDD Caches</name>
+            <width>900</width>
+            <height>200</height>
+            <yaxismin>0.0000</yaxismin>
+            <yaxismax>100.0000</yaxismax>
+            <show_work_period>1</show_work_period>
+            <show_triggers>1</show_triggers>
+            <type>1</type>
+            <show_legend>1</show_legend>
+            <show_3d>0</show_3d>
+            <percent_left>0.0000</percent_left>
+            <percent_right>0.0000</percent_right>
+            <ymin_type_1>1</ymin_type_1>
+            <ymax_type_1>0</ymax_type_1>
+            <ymin_item_1>0</ymin_item_1>
+            <ymax_item_1>0</ymax_item_1>
+            <graph_items>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>DD0000</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template App Zoomdata Service</host>
+                        <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:rdd.forever.cache.size:value&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>0000DD</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template App Zoomdata Service</host>
+                        <key>zoomdata-metrics-collector.py[&quot;{HOST.CONN}&quot;,&quot;gauges:rdd.timed.cache.size:value&quot;]</key>
                     </item>
                 </graph_item>
             </graph_items>
