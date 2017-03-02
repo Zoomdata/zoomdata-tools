@@ -47,7 +47,7 @@ class ImpalaConnection(ZoomdataObject):
 
 class ImpalaDatasource(ZoomdataObject):
     # Create a new datasource for a collection(table) in Impala
-    def __init__(self, name, request, connectionID, collection, schema, customSQLFlag="false", connectorType="IMPALA"):
+    def __init__(self, name, request, connectionID, collection, schema, customSQLFlag="false", connectorType="IMPALA", partitionField="",partitionBaseField=""):
         # Initialize the data source object
         self.name = name
         self.serverRequest = request
@@ -71,12 +71,18 @@ class ImpalaDatasource(ZoomdataObject):
         self.payload["storageConfiguration"]["schema"] = schema 
         self.payload["storageConfiguration"]["connectionId"] = connectionID
         self.payload["storageConfiguration"]["collectionParams"]["CUSTOM_SQL"] = customSQLFlag
+        # Set the time partition field
+        self.partitionField = partitionField.lower()
+        # Set the time partition field and base field at the source level
+        if partitionField != "" and partitionBaseField != "":
+            self.payload["storageConfiguration"]["partitions"] = json.loads('{"'+partitionBaseField+'": {"field": "'+partitionField+'"} }')
+            print "+ Time partition configured for "+partitionField+" based on "+partitionBaseField
 
     def create(self):
         # Overrides create() in the inherited ZoomdataObject (parent)
         # Create the datasource in Zoomdata and record the assigned ID
         stepCount = 0
-        print "Creating datasource "+self.name+" for collection "+self.collection
+        print "+ Creating datasource "+self.name+" for collection "+self.collection
         try:
             # Initialize fields metadata for the given collection (table)
             # Includes basic field metadata: datatype, etc
@@ -94,23 +100,27 @@ class ImpalaDatasource(ZoomdataObject):
             # Finalize and create the datasource definition with visualization defaults
             self.__finalizeDataSource__(dataSource)
             stepCount += 1 #4
-            print "- Data source "+self.name+" successfully created"
+            print "+ Data source "+self.name+" successfully created"
         except:
-            print "* Data source for collection "+self.collection+" could not be created" 
-            print "* Last step completed: "+str(stepCount)
+            print "- Data source for collection "+self.collection+" could not be created" 
+            print "- Last step completed: "+str(stepCount)
             e = sys.exc_info()
-            print e
+            print "- "+str(e)
 
     def __constructFields__(self,endpoint=""):
         url = self.apiEndpoint+'/fields'+endpoint
-        #data = json.dumps(self.payload)
-        #print data
-        self.payload['objectFields'] = self.submit(url)
-        #self.payload['objectFields'] = json.loads(self.serverRequest.submit(url,data=data))
+        fields = self.submit(url)
+
+        if self.partitionField != "":
+            for field in fields:
+                if field["name"].lower() == self.partitionField:
+                    field["storageConfig"]["metaFlags"] = ["PLAYABLE","PARTITION"]
+
+        self.payload['objectFields'] = fields
+
 
     def __initializeDataSource__(self):
         # Return the initial datasource definition from Zoomdata
-
         # Populate payload
         self.payload["playbackMode"] = False
         self.payload["timeFieldName"] = "none"
@@ -122,12 +132,13 @@ class ImpalaDatasource(ZoomdataObject):
         self.payload["isConnectionValid"] = True
         self.payload["volumeMetric"] = json.loads('{"label": "Volume","name": "count","storageConfig": {},"type": "NUMBER","visible": true}')
 
-        #data = json.dumps(self.payload)
-        #print data
         return self.submit()
-        #return self.serverRequest.submit(url,data=data)
 
     def __finalizeDataSource__(self, data):
+        # if time partition field is defined, then set it as the global time attribute
+        if self.partitionField != "":
+            data["controlsCfg"]["timeControlCfg"]["timeField"] = self.partitionField
+
         # Pass datasource definition back to Zoomdata. Visualization defaults will be set
         url = self.apiEndpoint+'/'+self.id
         return self.serverRequest.submit(url,data=json.dumps(data),lmda='PATCH')

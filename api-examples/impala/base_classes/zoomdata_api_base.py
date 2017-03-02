@@ -120,7 +120,7 @@ class ZoomdataObject(object):
         self.payload = json.load(f)
 
     except:
-      print "* File "+fileName+" could not be read" 
+      print "- File "+fileName+" could not be read" 
       raise
 
   def submit(self, customEndpoint=None):
@@ -130,7 +130,7 @@ class ZoomdataObject(object):
       apiEndpoint = customEndpoint
 
     data = json.dumps(self.payload)
-    #print data
+    
     return json.loads(self.serverRequest.submit(apiEndpoint,data=data))
 
   def create(self):
