@@ -25,7 +25,7 @@ The script provided here will read the provided `User-Group to Data Source Mappi
 The `load_zoomdata_security_model.py` script requires configuration in two files outlined below
 
 ##### Zoomdata Server
-The script requires the following information about your Zoomdata instance to be configured in `conf/zoomdata-server.json`:
+The script requires the following information about your Zoomdata instance to be configured in conf/zoomdata-server.json. Edit the zoomdata-server.json file included in this repository to reflect your server instance information.
 
 | Parameter |  Description  |
 | --- | --- |
