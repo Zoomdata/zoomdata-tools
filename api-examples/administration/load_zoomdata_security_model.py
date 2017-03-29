@@ -70,7 +70,7 @@ def main():
 
       #create the AD group in Zoomdata if it doesn't already exist
       if groupID is None:
-        data = '{"group":{"accountId":"'+zoomdataAccountID+'","configType":"manualAccess","label":"'+adGroup+'","description":"Auto Import AD Group","roles":["ROLE_SAVE_DASHBOARDS","ROLE_SHARE_DASHBOARDS","ROLE_SAVE_FILTERS","ROLE_EDIT_FORMULAS","ROLE_READ_FORMULAS","ROLE_CREATE_SOURCES"]},"bookmarks":[],"sources":[],"userIds":[]}'
+        data = '{"group":{"accountId":"'+zoomdataAccountID+'","configType":"manualAccess","label":"'+adGroup+'","description":"Auto Import AD Group","roles":["ROLE_SAVE_DASHBOARDS","ROLE_SAVE_FILTERS","ROLE_EDIT_FORMULAS","ROLE_READ_FORMULAS","ROLE_CREATE_SOURCES"]},"bookmarks":[],"sources":[],"userIds":[]}'
 
         try:
           groupID = json.loads(zoomdataServerRequest.submit(zoomdataBaseURL+'/service/groups',data))['group']['id']
