@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ################################################################################
-## ZOOMDATA 2.3 TARBALL DEPLOYMENT ##
+## ZOOMDATA 2.3+ TARBALL DEPLOYMENT ##
 # Prerequisites:
 # - Java 1.8 installed on host
 # - Max open file limit has been set for user: http://docs.zoomdata.com/installation-prerequisites
