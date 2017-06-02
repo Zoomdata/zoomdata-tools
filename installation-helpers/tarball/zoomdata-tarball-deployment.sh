@@ -30,6 +30,9 @@ do
     tar -xzf $tarball --strip-components=1 -C zoomdata
 done
 
+#the following line is necessary to account for relative paths in EDC services scripts
+cd $INSTALL_DIR/zoomdata
+
 # Set start scripts to be executable
 chmod +x $INSTALL_DIR/zoomdata/bin/*
 
