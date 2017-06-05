@@ -47,7 +47,7 @@ $INSTALL_DIR/zoomdata/bin/consul agent -client=127.0.0.1 -bind=127.0.0.1 -bootst
 
 # Start EDC services
 for edc in $INSTALL_DIR/zoomdata/bin/zoomdata-edc* ; do
-    $edc start &
+    $edc &
 done
 
 # Start the Zoomdata-Scheduler
