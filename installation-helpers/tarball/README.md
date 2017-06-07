@@ -12,14 +12,15 @@ Sample Bash script for deploying Zoomdata 2.3+ from tarball packaging. This scri
 ## Overview
 This manager script provides the following functions:
 
-1. Deployment
-1.1. Creates a `./zoomdata` directory within the `INSTALL_DIR`
-1.1. Unpacks all Zoomdata components to the `./zoomdata` directory
-1. Zoomdata Process Management
-1.1. Start an individual or all Zoomdata processes in the background
-1.1. Stop an individual or all Zoomdata processes
-1.1. Restart an individual or all Zoomdata processes in the background
-1.1. Status of an individual or all running Zoomdata processes
+#### Deployment
+1. Creates a `./zoomdata` directory within the `INSTALL_DIR`
+1. Unpacks all Zoomdata components to the `./zoomdata` directory
+
+#### Zoomdata Process Management
+1. Start an individual or all Zoomdata processes in the background
+1. Stop an individual or all Zoomdata processes
+1. Restart an individual or all Zoomdata processes in the background
+1. Status of an individual or all running Zoomdata processes
 
 ## Usage
 
@@ -46,4 +47,12 @@ This manager script provides the following functions:
     | Stop a Single Process | `./zoomdata-tarball-manager.sh stop <process>` |
     | Restart a Single Process | `./zoomdata-tarball-manager.sh restart <process>` |
 
-    Note: the single process functions accept the following process 
+    *Note:* the single process functions above accept the following process names in lowercase
+
+    | Process Name | Description |
+    | ------------- | ------------- |
+    | consul | Zoomdata service registry |
+    | zoomdata-edc-`*` | Zoomdata connectors. Replace `*` with the connector executable name from `zoomdata/bin` |
+    | zoomdata-scheduler | Zoomdata's metadata refresh scheduler |
+    | zoomdata-spark-proxy | Provides the in-memory flatfile cache for [SparkIt](https://www.zoomdata.com/docs/2.5/how-zoomdata-caches-the-data.html) |
+    | zoomdata | Core application |
