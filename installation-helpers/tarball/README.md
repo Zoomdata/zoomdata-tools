@@ -39,13 +39,13 @@ This manager script provides the following functions:
 
     | Function | Command |
     | ------------- | ------------- |
-    | Deployment | `./zoomdata-tarball-manager.sh deploy` |
-    | Start All Processes | `./zoomdata-tarball-manager.sh start` |
-    | Stop All Processes | `./zoomdata-tarball-manager.sh stop` |
-    | Restart All Processes | `./zoomdata-tarball-manager.sh restart` |
-    | Start a Single Process | `./zoomdata-tarball-manager.sh start <process>` |
-    | Stop a Single Process | `./zoomdata-tarball-manager.sh stop <process>` |
-    | Restart a Single Process | `./zoomdata-tarball-manager.sh restart <process>` |
+    | Deployment | `./zoomdata-process-manager.sh deploy` |
+    | Start All Processes | `./zoomdata-process-manager.sh start` |
+    | Stop All Processes | `./zoomdata-process-manager.sh stop` |
+    | Restart All Processes | `./zoomdata-process-manager.sh restart` |
+    | Start a Single Process | `./zoomdata-process-manager.sh start <process>` |
+    | Stop a Single Process | `./zoomdata-process-manager.sh stop <process>` |
+    | Restart a Single Process | `./zoomdata-process-manager.sh restart <process>` |
 
     *Note:* the single process functions above accept the following process names in lowercase
 
