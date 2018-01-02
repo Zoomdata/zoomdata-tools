@@ -1,3 +1,5 @@
+# Copyright (C) Zoomdata, Inc. 2012-2018. All rights reserved.
+
 # Purpose of this Example
  
 This example code enables a user to programmatically update the minimum and maximum values for a source's field in Zoomdata. The example will take the following configuration parameters in `scheduler-minMax-override.sh`:
