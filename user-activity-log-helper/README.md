@@ -2,6 +2,8 @@
 
 Sample utility for streaming Zoomdata's user activity log from the filesystem to a searchable data store. The utility is based on [Fluentd](https://www.fluentd.org/) running in [Docker](https://www.docker.com/) and minimizes dependencies required for installation.
 
+![Activity Log Helper Flow](helper-graphic.png)
+
 ## General Prerequisites:
 * Zoomdata installed with [user activity logging enabled](https://www.zoomdata.com/docs/2.6/activity-logging.html)
 * [Docker](https://www.docker.com/) installed on your Zoomdata host
@@ -15,4 +17,5 @@ Sample utility for streaming Zoomdata's user activity log from the filesystem to
 5. Navigate to the appropriate README using the data store specific links (below) for further instruction.
 
 ## Data Stores Currently Supported:
-* [Postgresql (9.5)](outputs/postgres/README.md)
+* [PostgreSQL 9.5](outputs/postgres/README.md)
+* [Elasticsearch 5.4](outputs/elasticsearch/README.md)

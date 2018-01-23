@@ -21,7 +21,12 @@ Supplement for streaming user activity logs from the Zoomdata host to [PostgreSQ
 | PG_USERNAME | PostgreSQL login. Must have write access all tables created in step 1 | zoomdata_logs |
 | PG_PASSWORD | Password for the PG_USERNAME login | Changeit! |
 
-3. Start the activity log helper using the provided [helper script](helper-start-pg.sh): `sh helper-start-pg.sh`
+3. Uncomment the following line in the root directory's [fluent.conf](../../fluent.conf) and save `@include outputs/postgres/fluent-postgres.conf` 
+
+4. Start the activity log helper using the provided [helper script](helper-start-pg.sh): `sh helper-start-pg.sh`
+
+### Additional Info:
+[PostgreSQL output plugin for Fluentd](https://github.com/uken/fluent-plugin-postgres)
 
 ## Troubleshooting
 
