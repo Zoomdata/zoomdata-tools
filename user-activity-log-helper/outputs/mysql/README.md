@@ -16,10 +16,10 @@ Supplement for streaming user activity logs from the Zoomdata host to [MySQL](ht
 | Variable |  Description  |  Example  |
 | --- | --- | --- |
 | MYSQL_HOST | MySQL host | localhost |
-| MYSQL_PORT | MySQL port | 5432 |
-| MYSQL_DATABASE | Database where the tables were created step 1 | zoomdata_logs |
-| MYSQL_USERNAME | MySQL login. Must have write access all tables created in step 1 | zoomdata_logs |
-| MYSQL_PASSWORD | Password for $MYSQL_USERNAME | Changeit! |
+| MYSQL_PORT | MySQL port | 3306 |
+| MYSQL_DATABASE | Database where the tables were created step 1 | mysql |
+| MYSQL_USERNAME | MySQL login. Must have write access all tables created in step 1 | root |
+| MYSQL_PASSWORD | Password for $MYSQL_USERNAME | my-secret-pw |
 
 3. Start the activity log helper using the provided [helper script](helper-start-mysql.sh): `sh helper-start-mysql.sh`
 
