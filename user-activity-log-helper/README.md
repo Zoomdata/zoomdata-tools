@@ -19,3 +19,4 @@ Sample utility for streaming Zoomdata's user activity log from the filesystem to
 ## Data Stores Currently Supported:
 * [PostgreSQL 9.5](outputs/postgres/README.md)
 * [Elasticsearch 5.4](outputs/elasticsearch/README.md)
+* [MySQL 5.7](outputs/mysql/README.md)

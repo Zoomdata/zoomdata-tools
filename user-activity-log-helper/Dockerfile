@@ -8,12 +8,13 @@ USER root
 
 RUN apk add --update --virtual .build-deps \
         sudo build-base ruby-dev zlib-dev postgresql-dev libc6-compat \
- && apk add --update --virtual libpq \
+ && apk add --update mariadb-dev \
  && sudo gem install \
         fluent-plugin-elasticsearch \
         fluent-plugin-output-solr \
         fluent-plugin-mongo \
         fluent-plugin-postgres \
+        fluent-plugin-mysql \
  && sudo fluent-gem install fluent-plugin-rewrite-tag-filter \
  && sudo gem sources --clear-all \
  && apk del .build-deps \
