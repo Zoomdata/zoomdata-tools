@@ -530,7 +530,12 @@ CREATE TABLE topology_performance_logs
     timeline text,
     finish_status text,
     action_started_on bigint,
-    duration bigint
+    duration bigint,
+    topology_created bigint,
+    topology_started bigint,
+    vis_data_succeeded bigint,
+    vis_command_finished bigint,
+    topology_finished bigint
 );
 
 -- DROP INDEX idx_topology_perf_event_date;
