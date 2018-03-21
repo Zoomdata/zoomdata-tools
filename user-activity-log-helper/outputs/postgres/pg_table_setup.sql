@@ -89,7 +89,13 @@ CREATE TABLE vis_command_logs
     cid text,
     action_started_on bigint,
     duration bigint,
-    request text
+    request text,
+    source_id text,
+    source_name text,
+    source_type text,
+    source_schema text,
+    source_collection text,
+    connection_id text
 );
 
 -- DROP INDEX idx_vis_command_event_date;
