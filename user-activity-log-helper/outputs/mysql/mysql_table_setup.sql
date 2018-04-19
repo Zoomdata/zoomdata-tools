@@ -108,6 +108,30 @@ CREATE INDEX idx_vis_command_event_date
     USING BTREE ON vis_command_logs 
     (event_date DESC);
 
+--DROP TABLE vis_logs;
+
+CREATE TABLE vis_logs
+(
+    event_date datetime,
+    user text,
+    user_type text,
+    account_id text,
+    user_groups text,
+    user_roles text,
+    ip text,
+    activity_type text,
+    status text,
+    cid text,
+    visualization_id text,
+    visualization_name text
+);
+
+-- DROP INDEX idx_vis_event_date;
+
+CREATE INDEX idx_vis_event_date
+    USING BTREE ON vis_logs 
+    (event_date DESC);
+
 --DROP TABLE vis_def_logs;
 
 CREATE TABLE vis_def_logs
@@ -123,7 +147,8 @@ CREATE TABLE vis_def_logs
     status text,
     cid text,
     visualization_id text,
-    visualization_name text
+    visualization_name text,
+    source_id text
 );
 
 -- DROP INDEX idx_vis_def_event_date;
