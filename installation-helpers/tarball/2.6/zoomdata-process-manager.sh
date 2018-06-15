@@ -94,7 +94,7 @@ deploy(){
     mkdir -p zoomdata/run
 
     # Unpack tarballs
-    for tarball in {*.tgz,*.tar.gz}
+    for tarball in {*.tgz,*.tar,*.tar.gz}
     do
         tar -xzf $tarball --strip-components=1 -C zoomdata
     done
