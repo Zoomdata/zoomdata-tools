@@ -5,6 +5,7 @@ Sample Bash script for deploying Zoomdata 2.6 from tarball packaging. This scrip
 ## Prerequisites:
 * Zoomdata components in tarball packaging (provided by your Zoomdata representative)
 * Java 1.8 installed or available via `$JAVA_HOME` on the Zoomdata host
+* [RabbitMQ](https://www.rabbitmq.com/download.html) installed on the host (used to support Zoomdata Upload API and CSV Upload)
 * Max open file limit adjusted for the OS user running the Zoomdata processes: https://www.zoomdata.com/docs/2.6/installation-prerequisites.html
 * An accessible Postgresql 9.5 instance with a Zoomdata user account and databases setup: http://docs.zoomdata.com/2.6/install-and-set-up-zoomdata-metadata-store
 * [OPTIONAL] Install Firefox to enable screenshotting of Zoomdata dashboards/visualizations: https://www.zoomdata.com/docs/2.6/post-installation-options.html
@@ -55,4 +56,6 @@ This manager script provides the following functions:
     | zoomdata-edc-`*` | Zoomdata connectors. Replace `*` with the connector executable name from `zoomdata/bin` |
     | zoomdata-scheduler | Zoomdata's metadata refresh scheduler |
     | zoomdata-query-engine | Zoomdata's query engine and resultset cache |
+    | zoomdata-upload-service | Handles Upload API and CSV upload requests |
+    | zoomdata-stream-writer | Works with zoomdata-upload-service to land data into supported backends |
     | zoomdata | Core application |

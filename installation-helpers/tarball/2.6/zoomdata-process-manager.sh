@@ -3,6 +3,7 @@
 ## ZOOMDATA 2.6 TARBALL DEPLOYMENT ##
 # Prerequisites:
 # - Java 1.8 installed on host
+# - RabbitMQ installed on host (used to support Zoomdata Upload API and CSV Upload)
 # - Max open file limit has been set for user: http://docs.zoomdata.com/2.6/installation-prerequisites
 # - Setup the Zoomdata account and databases in Postgres: http://docs.zoomdata.com/2.6/install-and-set-up-zoomdata-metadata-store
 # - [OPTIONAL] Install Firefox to enable screenshotting of Zoomdata dashboards/visualizations: http://docs.zoomdata.com/2.6/post-installation-options
@@ -19,73 +20,45 @@ PG_SCHEDULER_DB=${PG_SCHEDULER_DB:-"zoomdata-scheduler"}  # Zoomdata-scheduler m
 ZOOMDATA_CONF=${INSTALL_DIR}/zoomdata/conf/zoomdata.properties
 SCHEDULER_CONF=${INSTALL_DIR}/zoomdata/conf/scheduler.properties
 
+pushd () {
+    command pushd "$@" > /dev/null
+}
+
+popd () {
+    command popd "$@" > /dev/null
+}
+
 helper(){
     NAME=$2
-    DAEMONOPTS=""
-    PIDFILE=$INSTALL_DIR/zoomdata/run/$NAME.pid
-    case "$1" in
-    start)
-        printf "%-50s" "Starting $NAME..."
-        pushd $INSTALL_DIR/zoomdata
-        if [ "$NAME" = "consul" ]; then
-            ./bin/consul agent -client=127.0.0.1 -bind=127.0.0.1 -bootstrap -server -data-dir=$INSTALL_DIR/zoomdata/data/consul > $INSTALL_DIR/zoomdata/logs/consul.out 2>&1 &
-        else
-            PID=`bin/$NAME $DAEMONOPTS > $INSTALL_DIR/zoomdata/logs/$NAME.out  2>&1 & echo $!`
-            #echo "Saving PID" $PID " to " $PIDFILE
-                if [ -z $PID ]; then
-                    printf "%s\n" "Fail"
-                else
-                    echo $PID > $PIDFILE
-                    printf "%s\n" "Ok"
-                fi
-        fi
-        popd
-    ;;
-    status)
-        printf "%-50s" "Checking $NAME..."
-        pushd $INSTALL_DIR/zoomdata/run
-        if [ "$NAME" = "consul" ]; then
-            ../bin/consul info
-        else
-            if [ -f $PIDFILE ]; then
-                PID=`cat $PIDFILE`
-                if [ -z "`ps axf | grep ${PID} | grep -v grep`" ]; then
-                    printf "%s\n" "Process dead but pidfile exists"
-                else
-                    echo "Running"
-                fi
-            else
-                printf "%s\n" "Service not running"
-            fi
-        fi
-        popd
-    ;;
-    stop)
-        printf "%-50s" "Stopping $NAME"
-        pushd $INSTALL_DIR/zoomdata/run
-        if [ "$NAME" = "consul" ]; then
-            ../bin/consul leave > $INSTALL_DIR/zoomdata/logs/consul.out 2>&1 &
-        else
-            if [ -f $PIDFILE ]; then
-                PID=`cat $PIDFILE`      
-                kill $PID
-                printf "%s\n" "Ok"
-                rm -f $PIDFILE
-            else
-                printf "%s\n" "pidfile not found"
-            fi
-        fi
-        popd
-    ;;
-     
-    restart)
-        $0 stop
-        $0 start
-    ;;
-    *)
-        echo "Usage: $0 {status|start|stop|restart}"
-        exit 1
-    esac
+    DAEMONOPTS=$1
+    pushd $INSTALL_DIR/zoomdata/bin
+    printf "%-50s" "$DAEMONOPTS $NAME..."
+    if [ "$NAME" = "consul" ]; then
+        case "$1" in
+        start)
+            ./consul agent -client=127.0.0.1 -bind=127.0.0.1 -bootstrap -server -data-dir=$INSTALL_DIR/zoomdata/data/consul > $INSTALL_DIR/zoomdata/logs/consul.out 2>&1 &
+            printf "%s\n" "Ok"
+        ;;
+        status)
+            ./consul info
+        ;;
+        stop)
+            ./consul leave > $INSTALL_DIR/zoomdata/logs/consul.out 2>&1 &
+            printf "%s\n" "Ok"
+        ;;
+         
+        restart)
+            $0 stop
+            $0 start
+        ;;
+        *)
+            echo "Usage: $0 {status|start|stop|restart}"
+            exit 1
+        esac
+    else
+        ./$NAME $DAEMONOPTS
+    fi
+    popd
 }
 
 deploy(){
@@ -94,7 +67,7 @@ deploy(){
     mkdir -p zoomdata/run
 
     # Unpack tarballs
-    for tarball in {*.tgz,*.tar,*.tar.gz}
+    for tarball in zoomdata*.tar*
     do
         tar -xzf $tarball --strip-components=1 -C zoomdata
     done
@@ -110,7 +83,14 @@ deploy(){
 
     #Deploy client
     mkdir -p zoomdata/client
-    unzip client*.zip -d zoomdata/client
+    unzip -q client*.zip -d zoomdata/client
+
+    #Deploy Consul
+    #curl -qL -o zoomdata-consul.zip https://releases.hashicorp.com/consul/0.7.5/consul_0.7.5_linux_amd64.zip
+    mkdir -p zoomdata/{bin,data,logs,temp}
+    mkdir -p zoomdata/data/consul
+    mkdir -p zoomdata/conf/consul.conf.d
+    unzip -q zoomdata-consul.zip -d zoomdata/bin/
 }
 
 all(){
