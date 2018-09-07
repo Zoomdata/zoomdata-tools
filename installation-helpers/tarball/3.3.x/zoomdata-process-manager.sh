@@ -8,6 +8,7 @@
 # - Setup the Zoomdata account and databases in Postgres: http://docs.zoomdata.com/2.6/install-and-set-up-zoomdata-metadata-store
 # - [OPTIONAL] Install Firefox to enable screenshotting of Zoomdata dashboards/visualizations: http://docs.zoomdata.com/2.6/post-installation-options
 
+
 # Begin
 # Set script variables here for convenience
 #INSTALL_DIR="/home/drice/drtest/"  # Installation directory of Zoomdata; place this script and all Zoomdata related tarballs here
