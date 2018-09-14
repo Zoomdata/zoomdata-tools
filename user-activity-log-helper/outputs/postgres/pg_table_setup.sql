@@ -287,23 +287,6 @@ CREATE INDEX idx_user_event_date
     ON user_logs USING btree
     (event_date DESC);
 
---DROP TABLE vis_logs;
-
-CREATE TABLE vis_logs
-(
-    event_date timestamp without time zone,
-    "user" text,
-    user_type text,
-    account_id text,
-    user_groups text,
-    user_roles text,
-    ip text,
-    activity_type text,
-    status text,
-    visualization_id text,
-    visualization_name text
-);
-
 -- DROP INDEX idx_vis_event_date;
 
 CREATE INDEX idx_vis_event_date
