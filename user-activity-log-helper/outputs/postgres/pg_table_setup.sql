@@ -287,12 +287,6 @@ CREATE INDEX idx_user_event_date
     ON user_logs USING btree
     (event_date DESC);
 
--- DROP INDEX idx_vis_event_date;
-
-CREATE INDEX idx_vis_event_date
-    ON vis_logs USING btree
-    (event_date DESC);
-
 --DROP TABLE rdd_logs;
 
 CREATE TABLE rdd_logs
