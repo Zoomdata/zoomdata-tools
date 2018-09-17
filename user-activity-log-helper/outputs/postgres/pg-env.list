@@ -1,0 +1,5 @@
+PG_HOST=postgres-local
+PG_PORT=5432
+PG_DATABASE=zoomdata_logs
+PG_USERNAME=zoomdata_logs
+PG_PASSWORD=Changeit!

@@ -22,7 +22,7 @@ class HttpServerRequest(object):
       print "- AUTHORIZATION HEADER: "+req.get_header("Authorization")
       print "\n----- REQUEST DATA -----"
       print req.get_data()
-
+    
     res = urllib2.urlopen(req)
     out = res.read()
 
@@ -36,11 +36,11 @@ class HttpServerRequest(object):
 
   def submit(self,url,data=None,lmda=None,type=None):
     # Constructs the HTTP server request
-
+    
     if data != None:
         # Add data payload to request
         request = urllib2.Request(url, data) #PUT/POST
-
+        
         if type != None:
           # Set payload content type
           request.add_header('Content-Type', type)
@@ -65,7 +65,7 @@ class HttpServerRequest(object):
     # Enable verbose output of HTTP request transmission
     self.debug=True
     self.debugLevel=level
-
+  
   def disableDebug(self):
     # Disable verbose output of HTTP request transmission
     self.debug=False
@@ -83,7 +83,7 @@ class ZoomdataRequest(HttpServerRequest):
       self.supervisorAuthHeader = self.__encodeAuthHeader__(supervisorUser,supervisorPassword)
     # Initialize the Zoomdata server URL
     self.zoomdataServer = zoomdataBaseURL
-
+    
     # Default to admin authentication
     self.useAdminAuth()
 
@@ -120,7 +120,7 @@ class ZoomdataObject(object):
         self.payload = json.load(f)
 
     except:
-      print "* File "+fileName+" could not be read"
+      print "- File "+fileName+" could not be read" 
       raise
 
   def submit(self, customEndpoint=None):
@@ -130,7 +130,7 @@ class ZoomdataObject(object):
       apiEndpoint = customEndpoint
 
     data = json.dumps(self.payload)
-    # print data
+    
     return json.loads(self.serverRequest.submit(apiEndpoint,data=data))
 
   def create(self):

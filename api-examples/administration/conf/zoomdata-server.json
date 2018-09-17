@@ -1,0 +1,8 @@
+{
+  "URL": "http://localhost:8080/zoomdata",
+  "AdminUserName": "admin",
+  "AdminPassword": "password",
+  "ImpalaConnectionID": "5894b716e4b083202814e9a3",
+  "debugMode": "no",
+  "zoomdataAccountID":"58922ecae4b002e9c33db871"
+}
