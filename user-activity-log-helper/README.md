@@ -13,7 +13,7 @@ Sample utility for streaming Zoomdata's user activity log from the filesystem to
 1. Clone this repo to a working directory on your host
 2. Navigate to this directory and 
     * execute `export HELPER_ROOT=$(pwd)` _(this will be handy later)_
-    * create an empty `plugins` folder: `mkdir plugins` _(needed for the Docker build)_
+    * create an empty `plugins` folder: `mkdir -p plugins` _(needed for the Docker build)_
 3. Locate Zoomdata's installation directory, typically `/opt/zoomdata`, and set the `ZOOMDATA_INSTALL_ROOT` session variable to it. For example: `export ZOOMDATA_INSTALL_ROOT=/opt/zoomdata` _(this will be handy later too)_
 4. Build the root Docker image: `docker build -t zoomdata/activity-log-helper $HELPER_ROOT`
 5. Navigate to the appropriate README using the data store specific links (below) for further instruction.
