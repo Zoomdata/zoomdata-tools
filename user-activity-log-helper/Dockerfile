@@ -1,4 +1,4 @@
-FROM fluent/fluentd:v1.1.3-onbuild
+FROM fluent/fluentd:v1.1-onbuild
 
 USER root
 
@@ -12,7 +12,6 @@ RUN apk add --update --virtual .build-deps \
         fluent-plugin-postgres \
         fluent-plugin-mysql \
  && sudo fluent-gem install fluent-plugin-rewrite-tag-filter \
- && sudo gem sources --clear-all \
  && apk del .build-deps \
  && rm -rf /var/cache/apk/* \
            /home/fluent/.gem/ruby/2.3.0/cache/*.gem
