@@ -334,7 +334,11 @@ CREATE TABLE rdd_logs
     proxied_user text,
     read_request text,
     action_started_on bigint,
-    duration bigint
+    duration bigint,
+    dashboard_id text,
+    trace_id text,
+    visualization_id text,
+    visualization_name text
 );
 
 -- DROP INDEX idx_rdd_event_date;
