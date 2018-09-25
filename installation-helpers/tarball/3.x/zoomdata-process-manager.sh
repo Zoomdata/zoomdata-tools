@@ -1,20 +1,16 @@
 #!/usr/bin/env bash
 ################################################################################
-## ZOOMDATA 2.6 TARBALL DEPLOYMENT ##
+## ZOOMDATA 3.3+ TARBALL DEPLOYMENT ##
 # Prerequisites:
 # - Java 1.8 installed on host
 # - RabbitMQ installed on host (used to support Zoomdata Upload API and CSV Upload)
-# - Max open file limit has been set for user: http://docs.zoomdata.com/2.6/installation-prerequisites
-# - Setup the Zoomdata account and databases in Postgres: http://docs.zoomdata.com/2.6/install-and-set-up-zoomdata-metadata-store
-# - [OPTIONAL] Install Firefox to enable screenshotting of Zoomdata dashboards/visualizations: http://docs.zoomdata.com/2.6/post-installation-options
+# - Max open file limit has been set for user: https://www.zoomdata.com/docs/3/zoomdata-deployment-prerequisites.html
+# - Setup the Zoomdata account and databases in Postgres: https://www.zoomdata.com/docs/3/Topics/Installation/install-zoomdata-metadata-store.html
 
 
 # Begin
 # Set script variables here for convenience
-#INSTALL_DIR="/home/drice/drtest/"  # Installation directory of Zoomdata; place this script and all Zoomdata related tarballs here
-INSTALL_DIR=`pwd`
-#echo "THIS IS INSTALL DIR " + $INSTALL_DIR
-#exit
+INSTALL_DIR=${INSTALL_DIR:-"$(pwd)"}  # Installation directory of Zoomdata; place this script and all Zoomdata related tarballs here
 PG_HOST=${PG_HOST:-"localhost"}  # PostgreSQL Host
 PG_PORT=${PG_PORT:-"5432"}  # PostgreSQL Port
 PG_USER=${PG_USER:-"zoomdata"}  # PostgreSQL connection user name
@@ -90,20 +86,14 @@ deploy(){
 
     #Deploy client
     mkdir -p zoomdata/client
-    #unzip -q client*.zip -d zoomdata/client
-    tar -xf client-3.3.0-2.tar.gz 
+    unzip -q client*.zip -d zoomdata/client
 
     #Deploy Consul
-    #curl -qL -o zoomdata-consul.zip https://releases.hashicorp.com/consul/0.7.5/consul_0.7.5_linux_amd64.zip
+    curl -qL -o zoomdata-consul.zip https://releases.hashicorp.com/consul/0.7.5/consul_0.7.5_linux_amd64.zip
     mkdir -p zoomdata/{bin,data,logs,temp}
     mkdir -p zoomdata/data/consul
     mkdir -p zoomdata/conf/consul.conf.d
-    #unzip -q zoomdata-consul.zip -d zoomdata/bin/
-    tar -xf consul.tar.gz
-    mv $INSTALL_DIR/zoomdata/bin/consul $INSTALL_DIR/zoomdata/
-    cp $INSTALL_DIR/zoomdata/bin/zoomdata-consul-3.3.1-1/bin/zoomdata-consul $INSTALL_DIR/zoomdata/bin/consul 
-    #mv $INSTALL_DIR/zoomdata/bin/consul/ $INSTALL_DIR/zoomdata/
-    #cp $INSTALL_DIR/zoomdata/bin/zoomdata-consul-3.3.1-1/bin/zoomdata-consul $INSTALL_DIR/zoomdata/bin/consul
+    unzip -q zoomdata-consul.zip -d zoomdata/bin/
 }
 
 all(){
@@ -126,8 +116,8 @@ all(){
     helper $1 zoomdata-upload-service
     # Zoomdata web application
     helper $1 zoomdata
-    # OPTIONAL Screenshot service (XVFB)
-    helper $1 zoomdata-xvfb
+    # OPTIONAL Screenshot service
+    helper $1 zoomdata-screenshot-service
 
     popd
 }
