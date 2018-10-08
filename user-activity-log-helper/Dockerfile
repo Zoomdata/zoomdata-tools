@@ -1,6 +1,6 @@
-FROM fluent/fluentd:v1.1-onbuild
+FROM fluent/fluentd:onbuild
 
-USER root
+#USER root
 
 RUN apk add --update --virtual .build-deps \
         sudo build-base ruby-dev zlib-dev postgresql-dev libc6-compat \
@@ -15,5 +15,3 @@ RUN apk add --update --virtual .build-deps \
  && apk del .build-deps \
  && rm -rf /var/cache/apk/* \
            /home/fluent/.gem/ruby/2.3.0/cache/*.gem
-
-ENV FLUENT_UID 0
