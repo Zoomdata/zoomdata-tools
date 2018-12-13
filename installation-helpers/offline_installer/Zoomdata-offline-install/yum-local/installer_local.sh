@@ -24,22 +24,22 @@ debian_dist="unknown"
 debian_codename="unknown"
 
 # Core services list in starting order
-SERVICES='zoomdata-consul,zoomdata-query-engine,zoomdata-scheduler,zoomdata-stream-writer,zoomdata-upload-service,zoomdata'
+SERVICES='zoomdata-consul,zoomdata-query-engine,zoomdata-scheduler,zoomdata-screenshot-service,zoomdata-stream-writer-postgresql,zoomdata-upload-service,zoomdata'
 
 # Services need to be removed
-LEGACY_SERVICES='zoomdata-spark-proxy'
+LEGACY_SERVICES='zoomdata-spark-proxy,zoomdata-stream-writer,zoomdata-xvfb'
 
 # Mandatory packages to install
-PACKAGES="$SERVICES,zoomdata-zdmanage,zoomdata-xvfb"
+PACKAGES="$SERVICES,zoomdata-zdmanage"
 
 # Connectors list
-connectors='apache-solr,cloudera-search,elasticsearch-5.0,elasticsearch-6.0,impala,memsql,mongo,mssql,mysql,oracle,phoenix-4.7-queryserver,postgresql,redshift,rts,tez,sparksql'
+connectors='apache-solr,cloudera-search,elasticsearch-5.0,elasticsearch-6.0,impala,memsql,mongo,mssql,mysql,oracle,phoenix-4.7-queryserver,postgresql,redshift,rts,hive,sparksql'
 
 # Zoomdata repo
-ZOOMDATA_VERSION=${ZOOMDATA_VERSION:-2.6}
+ZOOMDATA_VERSION=${ZOOMDATA_VERSION:-3.7}
 ZOOMDATA_REPO_NAME=${ZOOMDATA_REPO_NAME:-zoomdata-${ZOOMDATA_VERSION}}
 ZOOMDATA_REPO_URI=${ZOOMDATA_REPO_URI:-file:///tmp/yum-local}
-#ZOOMDATA_REPO_KEY=${ZOOMDATA_REPO_KEY:-${ZOOMDATA_REPO_URI}/ZOOMDATA-GPG-KEY.pub}
+
 
 # Metadata connection details
 ZOOMDATA_PG_BASE_URL=${ZOOMDATA_PG_BASE_URL:-jdbc:postgresql://localhost:5432}
@@ -48,7 +48,7 @@ ZOOMDATA_PG_USER=${ZOOMDATA_PG_USER:-zoomdata}
 zoomdata_pg_password="unknown"
 
 # Toggle interactive dialog
-ZOOMDATA_ASK_JAVA_INSTALL=${ZOOMDATA_ASK_JAVA_INSTALL:-false}
+ZOOMDATA_ASK_JAVA_INSTALL=${ZOOMDATA_ASK_JAVA_INSTALL:-true}
 
 
 __die () {
@@ -162,9 +162,7 @@ pg_add_repo_debian () {
 
 pg_install_redhat () {
     echo "Installing postgresql server"
-    yum install --enablerepo=zoomdata-2.6 -y postgresql95-libs  >>/tmp/zoomdata-installer.log 2>&1
-    yum install --enablerepo=zoomdata-2.6 -y postgresql95-9*  >>/tmp/zoomdata-installer.log 2>&1
-    yum install --enablerepo=zoomdata-2.6 -y postgresql95-server* >>/tmp/zoomdata-installer.log 2>&1
+    yum install --enablerepo="${ZOOMDATA_REPO_NAME}" -y postgresql95-server >>/tmp/zoomdata-installer.log 2>&1
 }
 
 pg_install_debian () {
@@ -267,6 +265,8 @@ rmq_add_repo_redhat () {
     # using https://packagecloud.io/rabbitmq/rabbitmq-server/install#bash to bootstrap RabbitMQ server repo
     echo "Setting up RabbitMQ server official repository"
     curl -sL https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash >>/tmp/zoomdata-installer.log 2>&1
+    # disable SRPMS repo
+    yum-config-manager --disable rabbitmq_rabbitmq-server-source >>/tmp/zoomdata-installer.log 2>&1
 }
 
 rmq_add_repo_debian () {
@@ -278,7 +278,7 @@ rmq_add_repo_debian () {
 erlang_install_redhat () {
     echo "Setting up ERLang official repository"
     # Using zero dependency version of ERLang prepared by RabbitMQ team
-#     curl -sL https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash >>/tmp/zoomdata-installer.log 2>&1
+    #curl -sL https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash >>/tmp/zoomdata-installer.log 2>&1
     echo "Installing ERLang"
     yum -y install erlang >>/tmp/zoomdata-installer.log 2>&1
 }
@@ -402,8 +402,8 @@ rmq_detect_installed_debian () {
 zoomdata_add_repo_redhat () {
     echo "Adding zoomdata official repository"
     zoomdata_tools_repo_file="/etc/yum.repos.d/zoomdata-tools.repo"
-    yum install -y /tmp/yum-local/Packages/createrepo_c-0.10.0-6.el7.x86_64.rpm 
-    createrepo /tmp/yum-local	
+    yum install -y /tmp/yum-local/Packages/createrepo_c-0.10.0-6.el7.x86_64.rpm
+    createrepo_c /tmp/yum-local
     repo_file="/etc/yum.repos.d/${ZOOMDATA_REPO_NAME}.repo"
     if [ ! -r "${repo_file}" ] ; then
         cat <<EOF > "${repo_file}"
@@ -592,7 +592,7 @@ zoomdata_stop_systemd () {
     done
     # Stop legacy services
     for service in $(__expand_list $LEGACY_SERVICES); do
-        if systemctl list-units | grep -q -w "${service}\.service" && \
+        if systemctl list-units | grep -q -w "${service}\\.service" && \
             systemctl status "${service}.service" >/dev/null 2>&1; then
             systemctl stop "${service}.service" >>/tmp/zoomdata-installer.log 2>&1
         fi
@@ -767,8 +767,14 @@ add_keyset_feature_configuration () {
     keyset_configure
 }
 
+clean_consul_data () {
+    echo "Clearing Consul data directory"
+    rm -rf /opt/zoomdata/data/consul/*
+}
+
 zoomdata_upgrade_redhat () {
     echo "Upgrading zoomdata"
+    clean_consul_data
     zoomdata_install_redhat
     if ! check_if_upload_service_configured ; then
         # Upload service configuration is missing - going to configure it
@@ -790,6 +796,7 @@ zoomdata_upgrade_redhat () {
 
 zoomdata_upgrade_debian () {
     echo "Upgrading zoomdata"
+    clean_consul_data
     zoomdata_install_debian
     if ! check_if_upload_service_configured ; then
         # Upload service configuration is missing - going to configure it
