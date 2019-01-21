@@ -1,4 +1,4 @@
-# Copyright (C) Zoomdata, Inc. 2012-2018. All rights reserved.
+# Copyright (C) Zoomdata, Inc. 2012-2019. All rights reserved.
 
 # Zoomdata Memory (JVM) Adjustment Script
 

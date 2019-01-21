@@ -1,4 +1,4 @@
-# Copyright (C) Zoomdata, Inc. 2012-2018. All rights reserved.
+# Copyright (C) Zoomdata, Inc. 2012-2019. All rights reserved.
 
 Sample utility for streaming Zoomdata's user activity log from the filesystem to a searchable data store. The utility is based on [Fluentd](https://www.fluentd.org/) running in [Docker](https://www.docker.com/) and minimizes dependencies required for installation.
 

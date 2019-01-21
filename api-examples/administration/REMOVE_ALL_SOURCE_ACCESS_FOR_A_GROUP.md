@@ -1,4 +1,4 @@
-# Copyright (C) Zoomdata, Inc. 2012-2018. All rights reserved.
+# Copyright (C) Zoomdata, Inc. 2012-2019. All rights reserved.
 
 Sample Python utility for use with Zoomdata's 'Private' REST API.  Zoomdata uses the 'private API' as the REST endpoints for all AJAX calls between the Zoomdata web application and the Zoomdata server.  This API is not documented for public use, but can be used in cases where the public API does not offer the needed options.  The public API does provide methods to manage user groups; see the [documentation](https://developer.zoomdata.com/2.5/docs/rest-api/) for details on the public API.
 

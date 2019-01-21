@@ -1,4 +1,4 @@
-# Copyright (C) Zoomdata, Inc. 2012-2018. All rights reserved.
+# Copyright (C) Zoomdata, Inc. 2012-2019. All rights reserved.
 
 Sample Bash script for deploying Zoomdata 2.6 from tarball packaging. This script is most useful for situations where the user deploying Zoomdata does not have root or sudo access on the host OS.
 
